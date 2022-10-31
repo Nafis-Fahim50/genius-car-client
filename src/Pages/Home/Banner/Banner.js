@@ -6,7 +6,6 @@ import img4 from '../../../assets/images/banner/4.jpg'
 import img5 from '../../../assets/images/banner/5.jpg'
 import img6 from '../../../assets/images/banner/6.jpg'
 import BannerItem from './BannerItem';
-import './Banner.css'
 
 const Banner = () => {
     const bannerData = [
