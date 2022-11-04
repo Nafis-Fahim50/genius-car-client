@@ -24,6 +24,21 @@ const Login = () => {
             console.log(user)
             form.reset();
             toast.success('Successfully login')
+            const currentUsr = {
+                email :user.email
+            }
+            // get jwt token 
+            fetch('http://localhost:5000/jwt',{
+                method: 'POST',
+                headers:{
+                    'content-type':'application/json'
+                },
+                body: JSON.stringify(currentUsr)
+            })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem('genius-token',data.token);
+            });
             navigate(from,{replace:true})
         })
         .catch(err =>{

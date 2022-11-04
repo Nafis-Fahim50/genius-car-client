@@ -4,17 +4,26 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import OrderRow from './OrderRow';
 
 const Orders = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logout} = useContext(AuthContext);
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/orders?email=${user?.email}`,{
+            headers:{
+                authorization : `Bearer ${localStorage.getItem('genius-token')}`
+            }
+        })
+            .then(res => {
+                if(res.status === 401 || res.status === 403){
+                    return logout();
+                }
+                return res.json()
+            })
             .then(data => {
                 // console.log(data);
                 setOrders(data)
             })
-    }, [user?.email])
+    }, [user?.email, logout])
 
     const handleDelete = id => {
         const processed = window.confirm('Are you sure to delete this item?');

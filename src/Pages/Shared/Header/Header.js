@@ -15,7 +15,10 @@ const Header = () => {
                         <Link className='text-red-500 font-bold' onClick={logout} to='/login'>Logout</Link>
                     </>
                     :
-                    <Link className='text-blue-500 font-bold' to='login'>Login</Link>
+                    <>
+                        <Link className='text-green-500 font-bold' to='/signup'>Signup</Link>
+                        <Link className='text-blue-500 font-bold' to='login'>Login</Link>
+                    </>
             }
         </li>
     </>
@@ -30,7 +33,7 @@ const Header = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link className="btn btn-ghost normal-case text-xl">
+                <Link className="btn btn-ghost normal-case text-xl" to='/'>
                     <img src={logo} alt="" />
                 </Link>
             </div>
